@@ -1,0 +1,6 @@
+@KT10ADO.NET_HostAddress = http://localhost:5193
+
+GET {{KT10ADO.NET_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
