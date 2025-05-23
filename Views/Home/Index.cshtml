@@ -1,0 +1,94 @@
+﻿@model KT10ADO.NET.Models.DemoViewModel
+
+@{
+    ViewBag.Title = "Демонстрация данных KT10ADO Core";
+}
+@if (TempData["Message"] != null)
+{
+    <div style="padding: 10px; background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724; margin-bottom: 20px;">
+        @TempData["Message"]
+    </div>
+}
+
+<h2>User</h2>
+<table border="1" cellpadding="4" cellspacing="0">
+    <thead>
+        <tr>
+            <th>User Id</th>
+            <th>User Name</th>
+            <th>User Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.UserID</td>
+                <td>@user.UserName</td>
+                <td>@user.UserEmail</td>
+                <td>
+                    <form method="post" action="/Home/Delete">
+                        <input type="hidden" name="UserID" value="@user.UserID" />
+                        <button type="submit">Удалить</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="get" action="/Home/Edit">
+                        <input type="hidden" name="id" value="@user.UserID" />
+                        <button type="submit">Редактировать</button>
+                    </form>
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<hr />
+
+<h2>UserProfiles</h2>
+<table border="1" cellpadding="4" cellspacing="0">
+    <thead>
+        <tr>
+            <th>UserProfileId</th>
+            <th>Bio</th>
+            <th>User Profile Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var profile in Model.UserProfiles)
+        {
+            <tr>
+                <td>@profile.UserProfileId</td>
+                <td>@profile.Bio</td>
+                <td>@profile.UserProfileEmail</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<hr />
+
+<h2>Создать новый профиль</h2>
+
+<form method="post" action="/Home/Create">
+
+    <div>
+        <label>Имя пользователя:</label>
+        <input type="text" name="UserName" required />
+    </div>
+    <div>
+        <label>Email пользователя:</label>
+        <input type="email" name="UserEmail" required />
+    </div>
+    <div>
+        <label>Биография:</label>
+        <input type="text" name="Bio" required />
+    </div>
+    <div>
+        <label>Email профиля:</label>
+        <input type="email" name="UserProfileEmail" required />
+    </div>
+    <button type="submit">Добавить профиль</button>
+</form>

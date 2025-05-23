@@ -1,0 +1,31 @@
+﻿@model KT10ADO.NET.Models.User
+
+@{
+    ViewBag.Title = "Редактировать пользователя";
+}
+
+<h2>Редактировать</h2>
+
+<form method="post" action="/Home/Edit">
+    <input type="hidden" name="UserID" value="@Model.UserID" />
+
+    <div>
+        <label>Имя пользователя:</label>
+        <input type="text" name="UserName" value="@Model.UserName" />
+    </div>
+    <div>
+        <label>Email пользователя:</label>
+        <input type="email" name="UserEmail" value="@Model.UserEmail" />
+    </div>
+    <div>
+        <label>Биография:</label>
+        <input type="text" name="Bio" value="@Model.Profile?.Bio" />
+    </div>
+    <div>
+        <label>Email профиля:</label>
+        <input type="email" name="UserProfileEmail" value="@Model.Profile?.UserProfileEmail" />
+    </div>
+
+    <button type="submit">Сохранить</button>
+    <a href="/Home/Index">Назад</a>
+</form>
